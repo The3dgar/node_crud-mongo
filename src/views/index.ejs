@@ -1,0 +1,68 @@
+<%- include('partials/_header.ejs') %>
+
+
+
+<!-- para ver lo que nos manda el backend cuando accedemos a esta ruta -->
+<!-- 
+<pre>
+  <%=tasks%>
+</pre> -->
+
+
+
+<div class="container">
+
+  <div class="row">
+    <!-- formulario -->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+
+          <form action="/add" method="POST">
+            <div class="form-group">
+              <!-- tratar que sean los mismos nombres que hay en el modelo -->
+              <input type="text" name="title" placeholder="Inserta un titulo" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <textarea name="description" placeholder="Inserta una descripcion" class="form-control"
+                required></textarea>
+            </div>
+            <button type="submit" class="btn btn-block btn-primary">Agregar</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- tabla -->
+    <div class="col-md-7">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <th>N°</th>
+          <th>Titulo</th>
+          <th>Descripcion</th>
+          <th>Operacion</th>
+        </thead>
+        <tbody>
+          <%for (var i = 0; i< tasks.length; i++) { %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%=tasks[i].title%></td>
+            <td><%=tasks[i].description%></td>
+            <td>
+              <a href="/done/<%=tasks[i]._id%>" class="btn <%=tasks[i].status ? 'btn-success':'btn-dark' %>">Listo</a>
+              <a href="/delete/<%=tasks[i]._id%>" class="btn btn-danger">Borrar</a>
+              <a href="/edit/<%=tasks[i]._id%>" class="btn btn-info">Modificar</a>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</div>
+
+<%- include('partials/_footer.ejs') %>

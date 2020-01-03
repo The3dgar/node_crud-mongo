@@ -1,0 +1,4 @@
+en npm i  modulo -D la -D es para devDependencies solo para desarollo
+
+el package-lock es de configuracion de npm
+
